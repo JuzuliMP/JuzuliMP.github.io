@@ -8,6 +8,8 @@ try {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  basePath: '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '.' : '',
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -23,6 +25,7 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  trailingSlash: true,
 }
 
 mergeConfig(nextConfig, userConfig)
