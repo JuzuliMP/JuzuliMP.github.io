@@ -23,7 +23,7 @@ interface PDFViewerProps {
   fileName?: string
 }
 
-const PDFViewer = dynamic(() => import('react-pdf'), {
+const PDFViewer = dynamic(() => import('react-pdf').then(mod => mod.Document), {
   ssr: false,
   loading: () => <p>Loading PDF...</p>
 });
