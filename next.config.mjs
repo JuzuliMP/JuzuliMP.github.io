@@ -8,7 +8,7 @@ try {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/{repo-name}' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/JuzuliMP.github.io' : '',
   images: {
     unoptimized: true,
   },
