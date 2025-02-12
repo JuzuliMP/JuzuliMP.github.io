@@ -8,6 +8,7 @@ import TechStackSection from "./sections/tech-stack"
 import { Github, Linkedin, Mail, X } from "lucide-react"
 import { useState } from "react"
 import ResumeModal from "./components/resume-modal"
+import Certificates from './components/certificates'
 
 export default function Page() {
   const [isResumeOpen, setIsResumeOpen] = useState(false)
@@ -34,6 +35,9 @@ export default function Page() {
               <Link href="#tech-stack" className="transition-colors hover:text-foreground/80">
                 Tech Stack
               </Link>
+              <Link href="#certificates" className="transition-colors hover:text-foreground/80">
+                Certificates
+              </Link>
               <Link href="#contact" className="transition-colors hover:text-foreground/80">
                 Contact
               </Link>
@@ -53,6 +57,7 @@ export default function Page() {
         <HeroSection />
         <ProjectsSection />
         <TechStackSection />
+        <Certificates />
         <ContactSection />
       </main>
 
