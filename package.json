@@ -6,10 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export",
+    "export": "next build",
     "lint": "next lint",
-    "postinstall": "node copy-pdf-worker.js",
-    "deploy": "next build && touch out/.nojekyll"
+    "postinstall": "node copy-pdf-worker.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
