@@ -7,9 +7,10 @@ import { useState } from "react"
 import { Document, Page, pdfjs } from "react-pdf"
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
 import "react-pdf/dist/esm/Page/TextLayer.css"
+import dynamic from 'next/dynamic'
 
 // Configure pdf.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.js`
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 interface PDFViewerProps {
   isOpen: boolean
@@ -22,7 +23,12 @@ interface PDFViewerProps {
   fileName?: string
 }
 
-const PDFViewer = ({ 
+const PDFViewer = dynamic(() => import('react-pdf'), {
+  ssr: false,
+  loading: () => <p>Loading PDF...</p>
+});
+
+const PDFViewerComponent = ({ 
   isOpen, 
   onClose, 
   file,
@@ -149,4 +155,4 @@ const PDFViewer = ({
   )
 }
 
-export default PDFViewer 
+export default PDFViewerComponent 
