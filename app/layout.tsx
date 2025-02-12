@@ -43,6 +43,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Ensure base path for assets */}
+        <base href={process.env.NODE_ENV === 'production' ? '/JuzuliMP.github.io/' : '/'} />
+      </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
