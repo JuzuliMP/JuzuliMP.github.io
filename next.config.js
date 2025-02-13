@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/JuzuliMP.github.io' : '',
+  basePath: '',
+  // basePath: 'production' ? '/JuzuliMP.github.io' : '',
   images: {
     unoptimized: true,
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/JuzuliMP.github.io' : '',
+  // assetPrefix: process.env.NODE_ENV === 'production' ? '/JuzuliMP.github.io' : '',
+  assetPrefix: '',
   // Ensure trailing slashes are handled correctly
   trailingSlash: true,
   webpack: (config) => {
