@@ -9,6 +9,7 @@ import { Github, Linkedin, Mail, X } from "lucide-react"
 import { useState } from "react"
 import ResumeModal from "./components/resume-modal"
 import Certificates from './components/certificates'
+// import Timeline from "./components/timeline"
 
 export default function Page() {
   const [isResumeOpen, setIsResumeOpen] = useState(false)
@@ -55,6 +56,7 @@ export default function Page() {
 
       <main className="container px-4 md:px-6">
         <HeroSection />
+        {/* <Timeline /> */}
         <ProjectsSection />
         <TechStackSection />
         <Certificates />
