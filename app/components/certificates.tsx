@@ -7,6 +7,7 @@ type Certificate = {
   date: string
   credentialId: string
   credentialUrl?: string
+  pdfPath?: string
   image: string
   skills: string[]
 }
@@ -17,6 +18,7 @@ const certificates: Certificate[] = [
       issuer: "Techmindz",
       date: "2022",
       credentialId: "N/A",
+      pdfPath: "/docs/flutter-certificate.pdf",
       image: "/images/flutter-cover.png",
       skills: ["Flutter", "Firebase", "Figma", "Dart", "Cubit"]
     },
@@ -73,9 +75,9 @@ const CertificateCard = ({ certificate }: { certificate: Certificate }) => {
             </span>
           ))}
         </div>
-        {certificate.credentialUrl && (
+        {(certificate.credentialUrl || certificate.pdfPath) && (
           <a
-            href={certificate.credentialUrl}
+            href={certificate.credentialUrl || certificate.pdfPath}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-block text-primary hover:text-primary/80"
@@ -97,9 +99,6 @@ export default function Certificates() {
         <h2 className="text-3xl font-bold mb-4">
           Certificates & Credentials
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Professional certifications and achievements that validate my expertise and continuous learning.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
