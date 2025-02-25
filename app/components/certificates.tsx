@@ -13,25 +13,25 @@ type Certificate = {
 }
 
 const certificates: Certificate[] = [
-    {
-      title: "Flutter Development",
-      issuer: "Techmindz",
-      date: "2022",
-      credentialId: "N/A",
-      pdfPath: "/docs/flutter-certificate.pdf",
-      image: "/images/flutter-cover.png",
-      skills: ["Flutter", "Firebase", "Figma", "Dart", "Cubit"]
-    },
-    {
-      title: "Pair Programming with a Large Language Model",
-      issuer: "DeepLearning.AI",
-      date: "2024",
-      credentialId: "d4291fde-84f4-4040-b540-1a2ed2372a79",
-      credentialUrl: "https://learn.deeplearning.ai/accomplishments/d4291fde-84f4-4040-b540-1a2ed2372a79?usp=sharing",
-      image: "/images/google-cover.png",
-      skills: ["Gemini", "AI in Software Development", "GenAI Applications", "Prompt Engineering"]
-    }
-  ]
+  {
+    title: "Flutter Development",
+    issuer: "Techmindz",
+    date: "2022",
+    credentialId: "N/A",
+    pdfPath: "/docs/flutter-certificate.pdf",
+    image: "/images/flutter-cover.png",
+    skills: ["Flutter", "Firebase", "Figma", "Dart", "Cubit"]
+  },
+  {
+    title: "Pair Programming with a Large Language Model",
+    issuer: "DeepLearning.AI",
+    date: "2024",
+    credentialId: "d4291fde-84f4-4040-b540-1a2ed2372a79",
+    credentialUrl: "https://learn.deeplearning.ai/accomplishments/d4291fde-84f4-4040-b540-1a2ed2372a79?usp=sharing",
+    image: "/images/google-cover.png",
+    skills: ["Gemini", "AI in Software Development", "GenAI Applications", "Prompt Engineering"]
+  }
+]
 
 const CertificateCard = ({ certificate }: { certificate: Certificate }) => {
   return (
@@ -94,17 +94,18 @@ const CertificateCard = ({ certificate }: { certificate: Certificate }) => {
 
 export default function Certificates() {
   return (
-    <section className="py-16" id="certificates">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-4">
+    <section id="certificates" className="py-12 md:py-24 lg:py-32">
+
+      <div className="container px-4 md:px-6">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
           Certificates & Credentials
         </h2>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {certificates.map((cert) => (
-          <CertificateCard key={cert.credentialId} certificate={cert} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certificates.map((cert) => (
+            <CertificateCard key={cert.credentialId} certificate={cert} />
+          ))}
+        </div>
       </div>
     </section>
   )
