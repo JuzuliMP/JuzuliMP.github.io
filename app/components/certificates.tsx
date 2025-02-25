@@ -17,7 +17,7 @@ const certificates: Certificate[] = [
       issuer: "Techmindz",
       date: "2022",
       credentialId: "N/A",
-      image: "/docs/flutter-certificate.pdf",
+      image: "/images/flutter-cover.png",
       skills: ["Flutter", "Firebase", "Figma", "Dart", "Cubit"]
     },
     {
@@ -26,7 +26,7 @@ const certificates: Certificate[] = [
       date: "2024",
       credentialId: "d4291fde-84f4-4040-b540-1a2ed2372a79",
       credentialUrl: "https://learn.deeplearning.ai/accomplishments/d4291fde-84f4-4040-b540-1a2ed2372a79?usp=sharing",
-      image: "/certificates/deeplearning-ai.png", // You'll need to add this image
+      image: "/images/google-cover.png",
       skills: ["Gemini", "AI in Software Development", "GenAI Applications", "Prompt Engineering"]
     }
   ]
