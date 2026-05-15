@@ -217,7 +217,7 @@ function AboutSection() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex justify-center">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden glass-card p-1">
-                <img src="/images/profile.jpeg" alt="Mohammed Juzuli M P" className="w-full h-full object-cover rounded-[calc(1.5rem-4px)]" />
+                <img src="/images/profile.jpeg" alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India" className="w-full h-full object-cover rounded-[calc(1.5rem-4px)]" />
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl border border-purple-500/20 float" />
@@ -306,7 +306,7 @@ function ProjectsSection() {
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className={`block h-full ${project.featured ? 'md:grid md:grid-cols-2' : ''}`}>
                   {/* Image */}
                   <div className="relative h-48 md:h-56 overflow-hidden">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <img src={project.image} alt={`${project.title} — ${project.description}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d1a] via-transparent to-transparent" />
                     {project.featured && (
                       <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium border border-purple-500/30 backdrop-blur-sm">
@@ -429,20 +429,22 @@ function Portfolio() {
       {/* Navigation */}
       <Navigation />
 
-      {/* Sections */}
-      <HeroSection />
-      <div className="section-divider" />
-      <StatsSection />
-      <div className="section-divider" />
-      <AboutSection />
-      <div className="section-divider" />
-      <ExperienceSection />
-      <div className="section-divider" />
-      <ProjectsSection />
-      <div className="section-divider" />
-      <SkillsSection />
-      <div className="section-divider" />
-      <ContactSection />
+      {/* Main Content */}
+      <main>
+        <HeroSection />
+        <div className="section-divider" />
+        <StatsSection />
+        <div className="section-divider" />
+        <AboutSection />
+        <div className="section-divider" />
+        <ExperienceSection />
+        <div className="section-divider" />
+        <ProjectsSection />
+        <div className="section-divider" />
+        <SkillsSection />
+        <div className="section-divider" />
+        <ContactSection />
+      </main>
       <Footer />
     </div>
   );
