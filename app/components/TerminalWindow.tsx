@@ -11,8 +11,8 @@ export function TerminalWindow() {
 
   return (
     <div className="glass-card rounded-2xl p-6 font-[family-name:var(--font-mono)] text-sm">
-      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-purple-500/10">
-        <Terminal className="w-4 h-4 text-purple-400" />
+      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-border">
+        <Terminal className="w-4 h-4 text-primary" />
         <span className="text-muted-foreground text-xs">terminal — zsh</span>
         <div className="flex gap-1.5 ml-auto">
           <div className="w-3 h-3 rounded-full bg-red-500/70" />
@@ -28,12 +28,12 @@ export function TerminalWindow() {
             animate={{ opacity: 1 }}
             transition={{ delay: index * 0.4 + 0.5 }}
           >
-            <div className="text-purple-400">{item.command}</div>
-            <div className="text-cyan-300/70 ml-4">{item.output}</div>
+            <div className="text-primary font-semibold">{item.command}</div>
+            <div className="text-accent/90 ml-4">{item.output}</div>
           </motion.div>
         ))}
-        <div className="text-purple-400 flex items-center">
-          $ <span className="w-2 h-5 bg-purple-400 ml-2 animate-pulse" />
+        <div className="text-primary flex items-center">
+          $ <span className="w-2 h-5 bg-primary ml-2 animate-pulse" />
         </div>
       </div>
     </div>

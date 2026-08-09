@@ -2,46 +2,48 @@
 
 :root {
   --font-size: 16px;
+  --font-heading: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Dark-only cyberpunk theme */
-.dark {
-  --background: #06060e;
-  --foreground: #e8e8f0;
-  --card: #0d0d1a;
-  --card-foreground: #e8e8f0;
-  --popover: #0d0d1a;
-  --popover-foreground: #e8e8f0;
-  --primary: #8b5cf6;
-  --primary-foreground: #ffffff;
-  --secondary: #1a1a2e;
-  --secondary-foreground: #c4b5fd;
-  --muted: #12121f;
-  --muted-foreground: #8888a0;
-  --accent: #0f172a;
-  --accent-foreground: #a78bfa;
+/* Permanent Arctic Sapphire Theme */
+:root, .dark {
+  --background: #080f1e;
+  --foreground: #e0f2fe;
+  --card: #0f1a2e;
+  --card-foreground: #e0f2fe;
+  --popover: #0f1a2e;
+  --popover-foreground: #e0f2fe;
+  --primary: #38bdf8;
+  --primary-foreground: #080f1e;
+  --secondary: #172a46;
+  --secondary-foreground: #bae6fd;
+  --muted: #132239;
+  --muted-foreground: #64748b;
+  --accent: #818cf8;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(139, 92, 246, 0.12);
-  --input: #1a1a2e;
-  --ring: #8b5cf6;
+  --border: rgba(56, 189, 248, 0.2);
+  --input: #172a46;
+  --ring: #38bdf8;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --chart-1: #8b5cf6;
-  --chart-2: #06b6d4;
-  --chart-3: #a78bfa;
-  --chart-4: #ec4899;
-  --chart-5: #22d3ee;
+  --chart-1: #38bdf8;
+  --chart-2: #818cf8;
+  --chart-3: #0284c7;
+  --chart-4: #a3e635;
+  --chart-5: #7dd3fc;
   --radius: 0.75rem;
 
-  /* Cyberpunk accent colors */
-  --neon-purple: #8b5cf6;
-  --neon-cyan: #06b6d4;
-  --neon-pink: #ec4899;
-  --neon-blue: #3b82f6;
-  --glow-purple: rgba(139, 92, 246, 0.4);
-  --glow-cyan: rgba(6, 182, 212, 0.4);
-  --glow-pink: rgba(236, 72, 153, 0.3);
+  --neon-purple: #38bdf8;
+  --neon-cyan: #0284c7;
+  --neon-pink: #818cf8;
+  --neon-blue: #0ea5e9;
+  --glow-purple: rgba(56, 189, 248, 0.4);
+  --glow-cyan: rgba(2, 132, 199, 0.4);
+  --glow-pink: rgba(129, 140, 248, 0.3);
 }
 
 @theme inline {
@@ -73,10 +75,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
@@ -144,7 +142,7 @@
   }
 
   ::selection {
-    background: rgba(139, 92, 246, 0.3);
+    background: rgba(56, 189, 248, 0.3);
     color: #ffffff;
   }
 }
