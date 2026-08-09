@@ -14,7 +14,7 @@ import { TerminalWindow } from "./components/TerminalWindow";
 import { MagneticButton } from "./components/MagneticButton";
 import { TextScramble } from "./components/TextScramble";
 import { TiltCard } from "./components/TiltCard";
-import { AnimatedCounter } from "./components/AnimatedCounter";
+
 
 const projects = [
   {
@@ -132,13 +132,13 @@ function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-2">
               <MagneticButton href="#contact">
-                <span className="flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-xl font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
-                  <Sparkles className="w-4 h-4" /> Get in Touch
+                <span className="inline-block px-7 py-4 border border-primary rounded-md text-sm font-[family-name:var(--font-mono)] text-primary hover:bg-primary/10 transition-colors">
+                  Get in Touch
                 </span>
               </MagneticButton>
               <MagneticButton href="#projects">
-                <span className="flex items-center gap-2 px-8 py-3.5 border border-primary/30 rounded-xl font-medium text-primary hover:bg-primary/10 hover:border-primary/50 transition-all">
-                  View Projects <ArrowUpRight className="w-4 h-4" />
+                <span className="inline-block px-7 py-4 border border-primary rounded-md text-sm font-[family-name:var(--font-mono)] text-primary hover:bg-primary/10 transition-colors">
+                  View Projects
                 </span>
               </MagneticButton>
             </div>
@@ -157,44 +157,7 @@ function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground text-xs z-10">
-        <span>Scroll</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-5 h-8 rounded-full border border-primary/30 flex justify-center pt-1.5">
-          <div className="w-1 h-1.5 rounded-full bg-primary" />
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
 
-function StatsSection() {
-  const yearsExperience = Math.max(1, new Date().getFullYear() - 2022 - (new Date().getMonth() < 5 ? 1 : 0));
-
-  const stats = [
-    { icon: Award, value: yearsExperience, suffix: "+", label: "Years Experience" },
-    { icon: Code, value: 100, suffix: "K+", label: "Lines of Code" },
-  ];
-
-  return (
-    <section className="relative z-10 py-20">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-8">
-          {stats.map(({ icon: Icon, value, suffix, label }, i) => (
-            <TiltCard key={label} className="glass-card rounded-2xl p-6 md:p-8 flex-1 w-full">
-              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="flex flex-col items-center text-center gap-3">
-                <div className="p-3 rounded-xl bg-primary/10">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-heading)] gradient-text-purple">
-                  <AnimatedCounter target={value} suffix={suffix} />
-                </div>
-                <div className="text-sm text-muted-foreground">{label}</div>
-              </motion.div>
-            </TiltCard>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
@@ -426,8 +389,8 @@ function ContactSection() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
           <MagneticButton href="mailto:juzulitry@gmail.com">
-            <span className="inline-flex items-center gap-3 px-10 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-shadow">
-              <Mail className="w-5 h-5" /> Get in Touch
+            <span className="inline-block px-8 py-4 border border-primary rounded-md text-sm font-[family-name:var(--font-mono)] text-primary hover:bg-primary/10 transition-colors">
+              Say Hello
             </span>
           </MagneticButton>
         </motion.div>
@@ -495,8 +458,7 @@ function Portfolio() {
       {/* Main Content */}
       <main>
         <HeroSection />
-        <div className="section-divider" />
-        <StatsSection />
+
         <div className="section-divider" />
         <AboutSection />
         <div className="section-divider" />
