@@ -216,8 +216,14 @@ function AboutSection() {
           {/* Photo */}
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex justify-center">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden glass-card p-1">
-                <img src="/images/profile.jpeg" alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India" className="w-full h-full object-cover rounded-[calc(1.5rem-4px)]" />
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden glass-card p-1 group cursor-pointer">
+                <div className="w-full h-full bg-primary rounded-[calc(1.5rem-4px)] overflow-hidden">
+                  <img 
+                    src="/images/profile.jpeg" 
+                    alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India" 
+                    className="w-full h-full object-cover mix-blend-multiply grayscale contrast-100 brightness-90 group-hover:mix-blend-normal group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" 
+                  />
+                </div>
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl border border-primary/20 float" />
@@ -346,11 +352,15 @@ function ProjectsSection() {
               <TiltCard className="glass-card rounded-2xl overflow-hidden group neon-border">
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className={`block h-full ${project.featured ? 'md:grid md:grid-cols-2' : ''}`}>
                   {/* Image */}
-                  <div className="relative h-48 md:h-56 overflow-hidden">
-                    <img src={project.image} alt={`${project.title} — ${project.description}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] via-transparent to-transparent" />
+                  <div className="relative h-48 md:h-56 overflow-hidden bg-primary">
+                    <img 
+                      src={project.image} 
+                      alt={`${project.title} — ${project.description}`} 
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 mix-blend-multiply grayscale contrast-100 brightness-90 group-hover:mix-blend-normal group-hover:grayscale-0 group-hover:brightness-100" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
                     {project.featured && (
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium border border-primary/30 backdrop-blur-sm">
+                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium border border-primary/30 backdrop-blur-sm z-10">
                         ⭐ Featured
                       </div>
                     )}
