@@ -248,6 +248,14 @@ function AboutSection() {
 }
 
 function ExperienceSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end center"]
+  });
+
+  const progressPercent = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <section id="experience" className="relative z-10 py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
@@ -256,11 +264,44 @@ function ExperienceSection() {
           <h2>Work <span className="gradient-text-purple">Timeline</span></h2>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
-          <div className="timeline-line" />
+        <div ref={containerRef} className="relative max-w-3xl mx-auto pb-10">
+          {/* Dull background line (shows completed timeline above the rocket) */}
+          <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-muted" />
+
+          {/* Glowing line acting as a thruster beam from the rocket to the bottom */}
+          <motion.div
+            style={{ top: progressPercent, bottom: 0 }}
+            className="absolute left-[19px] w-[2px] bg-primary shadow-[0_0_15px_var(--glow-cyan)]"
+          />
+
+          {/* Animated Rocket (points UP, moves top to bottom, landing sequence) */}
+          <motion.div
+            style={{ top: progressPercent }}
+            className="absolute left-[11px] -mt-2 z-20"
+          >
+            {/* -rotate-45 makes the lucide rocket point straight up */}
+            <Rocket className="w-5 h-5 text-primary -rotate-45 drop-shadow-[0_0_10px_var(--glow-cyan)]" fill="currentColor" />
+          </motion.div>
+
           {experience.map((exp, i) => (
-            <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="relative pl-14 pb-12 last:pb-0">
-              <div className="absolute left-[14px] top-1 timeline-dot" />
+            <motion.div
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
+              }}
+              className="relative pl-14 pb-12 last:pb-0 group"
+            >
+              <motion.div
+                variants={{
+                  hidden: { backgroundColor: "var(--muted)", boxShadow: "none" },
+                  visible: { backgroundColor: "var(--primary)", boxShadow: "0 0 10px var(--glow-cyan)", transition: { duration: 0.5, delay: 0.3 } }
+                }}
+                className="absolute left-[14px] top-2 w-3 h-3 rounded-full border-2 border-background z-10"
+              />
               <TiltCard className="glass-card rounded-2xl p-6 md:p-8" tiltStrength={5}>
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center gap-1.5">
