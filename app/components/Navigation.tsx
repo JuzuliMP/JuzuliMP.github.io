@@ -52,13 +52,12 @@ export function Navigation() {
             <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm font-[family-name:var(--font-heading)] shadow-md">
               J
             </div>
-            <span className="font-semibold text-lg font-[family-name:var(--font-heading)] hidden sm:block group-hover:text-primary transition-colors">
-              Juzuli
-            </span>
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Right Side: Nav + CTA */}
+          <div className="flex items-center gap-6">
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -79,10 +78,10 @@ export function Navigation() {
                 )}
               </a>
             ))}
-          </div>
+            </div>
 
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+            {/* CTA & Mobile Toggle */}
+            <div className="flex items-center gap-3">
             <a
               href="mailto:juzulitry@gmail.com"
               className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20 text-sm font-medium hover:bg-primary/20 hover:border-primary/40 transition-all"
@@ -97,7 +96,8 @@ export function Navigation() {
               aria-label="Toggle menu"
             >
               {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
