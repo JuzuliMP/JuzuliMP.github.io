@@ -126,7 +126,7 @@ function HeroSection() {
 
             {/* Bio */}
             <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
-              Building beautiful, performant mobile applications with Flutter. Specialized in creating seamless user experiences across iOS and Android.
+              I'm a mobile developer who loves bringing ideas to life with Flutter. Currently, I'm building real-time social experiences at YACHII.
             </p>
 
             {/* CTAs */}
@@ -218,10 +218,10 @@ function AboutSection() {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden glass-card p-1 group cursor-pointer">
                 <div className="w-full h-full bg-primary rounded-[calc(1.5rem-4px)] overflow-hidden">
-                  <img 
-                    src="/images/profile.jpeg" 
-                    alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India" 
-                    className="w-full h-full object-cover transition-all duration-700 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100" 
+                  <img
+                    src="/images/profile.jpeg"
+                    alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India"
+                    className="w-full h-full object-cover transition-all duration-700 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100"
                   />
                 </div>
               </div>
@@ -240,10 +240,10 @@ function AboutSection() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate mobile application developer specializing in Flutter development and UI/UX design. Building digital products, brands, and experiences with a focus on user experience and functionality.
+                Hello! I'm Juzuli, a mobile application developer specializing in Flutter and UI/UX design. I'm passionate about building digital products, brands, and experiences with a strong focus on user functionality.
               </p>
               <p>
-                With expertise in both Flutter and Swift, I create beautiful cross-platform applications that deliver seamless experiences across iOS and Android. My skill set includes state management with BLoC and Cubit, Firebase integration, and local storage solutions.
+                With expertise in both Flutter and Swift, I love creating beautiful cross-platform applications that deliver seamless experiences across iOS and Android. My skill set includes state management with BLoC and Cubit, Firebase integration, and local storage solutions.
               </p>
             </motion.div>
           </div>
@@ -353,10 +353,10 @@ function ProjectsSection() {
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className={`block h-full ${project.featured ? 'md:grid md:grid-cols-2' : ''}`}>
                   {/* Image */}
                   <div className="relative h-48 md:h-56 overflow-hidden bg-primary">
-                    <img 
-                      src={project.image} 
-                      alt={`${project.title} — ${project.description}`} 
-                      className="w-full h-full object-cover transition-all duration-700 md:group-hover:scale-110 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100" 
+                    <img
+                      src={project.image}
+                      alt={`${project.title} — ${project.description}`}
+                      className="w-full h-full object-cover transition-all duration-700 md:group-hover:scale-110 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
                     {project.featured && (
@@ -468,14 +468,44 @@ function Footer() {
   );
 }
 
+function Sidebars() {
+  return (
+    <>
+      {/* Left Sidebar (Socials) */}
+      <div className="fixed bottom-0 left-8 md:left-12 hidden lg:flex flex-col items-center gap-6 z-50">
+        <div className="flex flex-col gap-5">
+          {socials.map(({ icon: Icon, href, label }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all duration-300" aria-label={label}>
+              <Icon className="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+        <div className="w-[1px] h-24 bg-muted-foreground/50"></div>
+      </div>
+
+      {/* Right Sidebar (Email) */}
+      <div className="fixed bottom-0 right-8 md:right-12 hidden lg:flex flex-col items-center gap-6 z-50">
+        <a href="mailto:juzulitry@gmail.com" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all duration-300 text-sm tracking-widest font-[family-name:var(--font-mono)]" style={{ writingMode: 'vertical-rl' }}>
+          juzulitry@gmail.com
+        </a>
+        <div className="w-[1px] h-24 bg-muted-foreground/50"></div>
+      </div>
+    </>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       {/* Background effects */}
-      <GradientMeshBackground />
-      <ParticleNetwork />
+      <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
+        <GradientMeshBackground />
+        <ParticleNetwork />
+        <div className="noise-overlay" />
+      </div>
       <CursorGlow />
-      <div className="noise-overlay" />
+
+      <Sidebars />
 
       {/* Navigation */}
       <Navigation />
