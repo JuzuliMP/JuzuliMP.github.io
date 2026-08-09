@@ -221,7 +221,7 @@ function AboutSection() {
                   <img 
                     src="/images/profile.jpeg" 
                     alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India" 
-                    className="w-full h-full object-cover mix-blend-multiply grayscale contrast-100 brightness-90 group-hover:mix-blend-normal group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" 
+                    className="w-full h-full object-cover transition-all duration-700 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100" 
                   />
                 </div>
               </div>
@@ -356,7 +356,7 @@ function ProjectsSection() {
                     <img 
                       src={project.image} 
                       alt={`${project.title} — ${project.description}`} 
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 mix-blend-multiply grayscale contrast-100 brightness-90 group-hover:mix-blend-normal group-hover:grayscale-0 group-hover:brightness-100" 
+                      className="w-full h-full object-cover transition-all duration-700 md:group-hover:scale-110 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
                     {project.featured && (
