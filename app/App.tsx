@@ -415,27 +415,16 @@ function Footer() {
 
 function Sidebars() {
   return (
-    <>
-      {/* Left Sidebar (Socials) */}
-      <div className="fixed bottom-0 left-8 md:left-12 hidden lg:flex flex-col items-center gap-6 z-50">
-        <div className="flex flex-col gap-5">
-          {socials.map(({ icon: Icon, href, label }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all duration-300" aria-label={label}>
-              <Icon className="w-5 h-5" />
-            </a>
-          ))}
-        </div>
-        <div className="w-[1px] h-24 bg-muted-foreground/50"></div>
+    <div className="fixed bottom-0 right-8 md:right-12 hidden lg:flex flex-col items-center gap-6 z-50">
+      <div className="flex flex-col gap-5">
+        {socials.map(({ icon: Icon, href, label }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all duration-300" aria-label={label}>
+            <Icon className="w-5 h-5" />
+          </a>
+        ))}
       </div>
-
-      {/* Right Sidebar (Email) */}
-      <div className="fixed bottom-0 right-8 md:right-12 hidden lg:flex flex-col items-center gap-6 z-50">
-        <a href="mailto:juzulitry@gmail.com" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all duration-300 text-sm tracking-widest font-[family-name:var(--font-mono)]" style={{ writingMode: 'vertical-rl' }}>
-          juzulitry@gmail.com
-        </a>
-        <div className="w-[1px] h-24 bg-muted-foreground/50"></div>
-      </div>
-    </>
+      <div className="w-[1px] h-24 bg-muted-foreground/50"></div>
+    </div>
   );
 }
 
