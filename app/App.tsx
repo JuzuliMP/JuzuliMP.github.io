@@ -403,10 +403,10 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="relative z-10 py-8 border-t border-border">
+    <footer className="relative z-10 py-8">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <p className="text-sm text-muted-foreground">
-          © 2026 Mohammed Juzuli M P. Designed & built with <span className="text-primary">♥</span> using React & Tailwind CSS.
+        <p className="text-sm text-muted-foreground font-[family-name:var(--font-mono)]">
+          Designed & Built by <a href="#about" className="hover:text-primary transition-colors">Juzuli</a>
         </p>
       </div>
     </footer>
