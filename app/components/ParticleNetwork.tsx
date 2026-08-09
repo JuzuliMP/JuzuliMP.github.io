@@ -1,5 +1,20 @@
 import { useEffect, useRef } from 'react';
 
+function parseColor(colorStr: string): [number, number, number] {
+  colorStr = (colorStr || '').trim();
+  if (colorStr.startsWith('#')) {
+    let hex = colorStr.slice(1);
+    if (hex.length === 3) hex = hex.split('').map((c) => c + c).join('');
+    const num = parseInt(hex, 16);
+    return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+  }
+  const match = colorStr.match(/\d+/g);
+  if (match && match.length >= 3) {
+    return [parseInt(match[0]), parseInt(match[1]), parseInt(match[2])];
+  }
+  return [139, 92, 246];
+}
+
 export function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -36,7 +51,6 @@ export function ParticleNetwork() {
       }
 
       update() {
-        // Mouse interaction
         const dx = mouseRef.current.x - this.x;
         const dy = mouseRef.current.y - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -50,22 +64,20 @@ export function ParticleNetwork() {
         this.x += this.vx;
         this.y += this.vy;
 
-        // Damping
         this.vx *= 0.99;
         this.vy *= 0.99;
 
-        // Wrap
         if (this.x < 0) this.x = canvas!.width;
         if (this.x > canvas!.width) this.x = 0;
         if (this.y < 0) this.y = canvas!.height;
         if (this.y > canvas!.height) this.y = 0;
       }
 
-      draw() {
+      draw(rgbStr: string) {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(139, 92, 246, 0.5)';
+        ctx.fillStyle = `rgba(${rgbStr}, 0.5)`;
         ctx.fill();
       }
     }
@@ -75,7 +87,7 @@ export function ParticleNetwork() {
       particles.push(new Particle());
     }
 
-    function drawConnections() {
+    function drawConnections(rgbStr: string) {
       if (!ctx) return;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -88,7 +100,7 @@ export function ParticleNetwork() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
+            ctx.strokeStyle = `rgba(${rgbStr}, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -100,12 +112,17 @@ export function ParticleNetwork() {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach(p => {
+      const style = getComputedStyle(document.documentElement);
+      const primaryHex = style.getPropertyValue('--primary').trim() || '#8b5cf6';
+      const rgb = parseColor(primaryHex);
+      const rgbStr = rgb.join(',');
+
+      particles.forEach((p) => {
         p.update();
-        p.draw();
+        p.draw(rgbStr);
       });
 
-      drawConnections();
+      drawConnections(rgbStr);
       animId = requestAnimationFrame(animate);
     }
 

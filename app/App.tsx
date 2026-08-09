@@ -14,7 +14,7 @@ import { TerminalWindow } from "./components/TerminalWindow";
 import { MagneticButton } from "./components/MagneticButton";
 import { TextScramble } from "./components/TextScramble";
 import { TiltCard } from "./components/TiltCard";
-import { AnimatedCounter } from "./components/AnimatedCounter";
+
 
 const projects = [
   {
@@ -126,33 +126,24 @@ function HeroSection() {
 
             {/* Bio */}
             <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
-              Building beautiful, performant mobile applications with Flutter. Specialized in creating seamless user experiences across iOS and Android.
+              I'm a mobile developer who loves bringing ideas to life with Flutter. Currently, I'm building real-time social experiences at YACHII.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-2">
               <MagneticButton href="#contact">
-                <span className="flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl font-semibold shadow-lg shadow-purple-500/20 hover:shadow-xl hover:shadow-purple-500/30 transition-shadow">
-                  <Sparkles className="w-4 h-4" /> Get in Touch
+                <span className="inline-block px-7 py-4 border border-primary rounded-md text-sm font-[family-name:var(--font-mono)] text-primary hover:bg-primary/10 transition-colors">
+                  Get in Touch
                 </span>
               </MagneticButton>
               <MagneticButton href="#projects">
-                <span className="flex items-center gap-2 px-8 py-3.5 border border-purple-500/30 rounded-xl font-medium text-purple-300 hover:bg-purple-500/10 hover:border-purple-500/50 transition-all">
-                  View Projects <ArrowUpRight className="w-4 h-4" />
+                <span className="inline-block px-7 py-4 border border-primary rounded-md text-sm font-[family-name:var(--font-mono)] text-primary hover:bg-primary/10 transition-colors">
+                  View Projects
                 </span>
               </MagneticButton>
             </div>
 
-            {/* Social links */}
-            <div className="flex gap-3 pt-2">
-              {socials.map(({ icon: Icon, href, label }) => (
-                <MagneticButton key={label} href={href} strength={0.4}>
-                  <span className="flex items-center justify-center w-11 h-11 rounded-xl glass hover:border-purple-500/30 transition-all group">
-                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-purple-400 transition-colors" />
-                  </span>
-                </MagneticButton>
-              ))}
-            </div>
+
           </motion.div>
 
           {/* Terminal */}
@@ -166,44 +157,7 @@ function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground text-xs z-10">
-        <span>Scroll</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-5 h-8 rounded-full border border-purple-500/30 flex justify-center pt-1.5">
-          <div className="w-1 h-1.5 rounded-full bg-purple-400" />
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
 
-function StatsSection() {
-  const yearsExperience = Math.max(1, new Date().getFullYear() - 2022 - (new Date().getMonth() < 5 ? 1 : 0));
-
-  const stats = [
-    { icon: Award, value: yearsExperience, suffix: "+", label: "Years Experience" },
-    { icon: Code, value: 100, suffix: "K+", label: "Lines of Code" },
-  ];
-
-  return (
-    <section className="relative z-10 py-20">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-8">
-          {stats.map(({ icon: Icon, value, suffix, label }, i) => (
-            <TiltCard key={label} className="glass-card rounded-2xl p-6 md:p-8 flex-1 w-full">
-              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="flex flex-col items-center text-center gap-3">
-                <div className="p-3 rounded-xl bg-purple-500/10">
-                  <Icon className="w-6 h-6 text-purple-400" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-heading)] gradient-text-purple">
-                  <AnimatedCounter target={value} suffix={suffix} />
-                </div>
-                <div className="text-sm text-muted-foreground">{label}</div>
-              </motion.div>
-            </TiltCard>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
@@ -216,28 +170,34 @@ function AboutSection() {
           {/* Photo */}
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex justify-center">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden glass-card p-1">
-                <img src="/images/profile.jpeg" alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India" className="w-full h-full object-cover rounded-[calc(1.5rem-4px)]" />
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden glass-card p-1 group cursor-pointer">
+                <div className="w-full h-full bg-primary rounded-[calc(1.5rem-4px)] overflow-hidden">
+                  <img
+                    src="/images/profile.jpeg"
+                    alt="Mohammed Juzuli M P — Software Engineer and Flutter Developer based in Bangalore, India"
+                    className="w-full h-full object-cover transition-all duration-700 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100"
+                  />
+                </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl border border-purple-500/20 float" />
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/10 to-cyan-500/10 float-delay-1" />
-              <div className="absolute top-1/2 -right-8 w-3 h-3 rounded-full bg-cyan-400 float-delay-2" />
+              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl border border-primary/20 float" />
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-2xl bg-primary/10 float-delay-1" />
+              <div className="absolute top-1/2 -right-8 w-3 h-3 rounded-full bg-accent float-delay-2" />
             </div>
           </motion.div>
 
           {/* Text */}
           <div className="space-y-6">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <TextScramble text="// ABOUT ME" className="text-sm text-purple-400 tracking-widest mb-3 block" />
+              <TextScramble text="// ABOUT ME" className="text-sm text-primary tracking-widest mb-3 block" />
               <h2 className="text-foreground">Crafting Digital <span className="gradient-text-purple">Experiences</span></h2>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate mobile application developer specializing in Flutter development and UI/UX design. Building digital products, brands, and experiences with a focus on user experience and functionality.
+                Hello! I'm Juzuli, a mobile application developer specializing in Flutter and UI/UX design. I'm passionate about building digital products, brands, and experiences with a strong focus on user functionality.
               </p>
               <p>
-                With expertise in both Flutter and Swift, I create beautiful cross-platform applications that deliver seamless experiences across iOS and Android. My skill set includes state management with BLoC and Cubit, Firebase integration, and local storage solutions.
+                With expertise in both Flutter and Swift, I love creating beautiful cross-platform applications that deliver seamless experiences across iOS and Android. My skill set includes state management with BLoC and Cubit, Firebase integration, and local storage solutions.
               </p>
             </motion.div>
           </div>
@@ -248,35 +208,76 @@ function AboutSection() {
 }
 
 function ExperienceSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end center"]
+  });
+
+  const progressPercent = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <section id="experience" className="relative z-10 py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <TextScramble text="// EXPERIENCE" className="text-sm text-purple-400 tracking-widest mb-3 block" />
+          <TextScramble text="// EXPERIENCE" className="text-sm text-primary tracking-widest mb-3 block" />
           <h2>Work <span className="gradient-text-purple">Timeline</span></h2>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
-          <div className="timeline-line" />
+        <div ref={containerRef} className="relative max-w-3xl mx-auto pb-10">
+          {/* Dull background line (shows completed timeline above the rocket) */}
+          <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-muted" />
+
+          {/* Glowing line acting as a thruster beam from the rocket to the bottom */}
+          <motion.div
+            style={{ top: progressPercent, bottom: 0 }}
+            className="absolute left-[19px] w-[2px] bg-primary shadow-[0_0_15px_var(--glow-cyan)]"
+          />
+
+          {/* Animated Rocket (points UP, moves top to bottom, landing sequence) */}
+          <motion.div
+            style={{ top: progressPercent }}
+            className="absolute left-[11px] -mt-2 z-20"
+          >
+            {/* -rotate-45 makes the lucide rocket point straight up */}
+            <Rocket className="w-5 h-5 text-primary -rotate-45 drop-shadow-[0_0_10px_var(--glow-cyan)]" fill="currentColor" />
+          </motion.div>
+
           {experience.map((exp, i) => (
-            <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="relative pl-14 pb-12 last:pb-0">
-              <div className="absolute left-[14px] top-1 timeline-dot" />
+            <motion.div
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
+              }}
+              className="relative pl-14 pb-12 last:pb-0 group"
+            >
+              <motion.div
+                variants={{
+                  hidden: { backgroundColor: "var(--muted)", boxShadow: "none" },
+                  visible: { backgroundColor: "var(--primary)", boxShadow: "0 0 10px var(--glow-cyan)", transition: { duration: 0.5, delay: 0.3 } }
+                }}
+                className="absolute left-[14px] top-2 w-3 h-3 rounded-full border-2 border-background z-10"
+              />
               <TiltCard className="glass-card rounded-2xl p-6 md:p-8" tiltStrength={5}>
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium flex items-center gap-1.5">
+                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center gap-1.5">
                     <Calendar className="w-3 h-3" /> {exp.period}
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-medium flex items-center gap-1.5">
+                  <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium flex items-center gap-1.5">
                     <MapPin className="w-3 h-3" /> {exp.location}
                   </span>
                 </div>
                 <h3 className="text-foreground mb-1">{exp.role}</h3>
                 {exp.link ? (
-                  <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-purple-400 text-sm mb-3 inline-flex items-center gap-1.5 hover:text-purple-300 transition-colors">
+                  <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-primary text-sm mb-3 inline-flex items-center gap-1.5 hover:text-primary/80 transition-colors">
                     <Briefcase className="w-3.5 h-3.5" /> {exp.company}
                   </a>
                 ) : (
-                  <p className="text-purple-400 text-sm mb-3 flex items-center gap-1.5">
+                  <p className="text-primary text-sm mb-3 flex items-center gap-1.5">
                     <Briefcase className="w-3.5 h-3.5" /> {exp.company}
                   </p>
                 )}
@@ -295,7 +296,7 @@ function ProjectsSection() {
     <section id="projects" className="relative z-10 py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <TextScramble text="// PROJECTS" className="text-sm text-purple-400 tracking-widest mb-3 block" />
+          <TextScramble text="// PROJECTS" className="text-sm text-primary tracking-widest mb-3 block" />
           <h2>Featured <span className="gradient-text-purple">Work</span></h2>
         </motion.div>
 
@@ -305,11 +306,15 @@ function ProjectsSection() {
               <TiltCard className="glass-card rounded-2xl overflow-hidden group neon-border">
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className={`block h-full ${project.featured ? 'md:grid md:grid-cols-2' : ''}`}>
                   {/* Image */}
-                  <div className="relative h-48 md:h-56 overflow-hidden">
-                    <img src={project.image} alt={`${project.title} — ${project.description}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d1a] via-transparent to-transparent" />
+                  <div className="relative h-48 md:h-56 overflow-hidden bg-primary">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} — ${project.description}`}
+                      className="w-full h-full object-cover transition-all duration-700 md:group-hover:scale-110 md:mix-blend-multiply md:grayscale md:contrast-100 md:brightness-90 md:group-hover:mix-blend-normal md:group-hover:grayscale-0 md:group-hover:brightness-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
                     {project.featured && (
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium border border-purple-500/30 backdrop-blur-sm">
+                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium border border-primary/30 backdrop-blur-sm z-10">
                         ⭐ Featured
                       </div>
                     )}
@@ -318,9 +323,9 @@ function ProjectsSection() {
                   {/* Content */}
                   <div className="p-6 md:p-8">
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-foreground group-hover:text-purple-400 transition-colors">{project.title}</h3>
-                      <div className="p-2 rounded-lg bg-purple-500/5 hover:bg-purple-500/20 transition-colors">
-                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-purple-400 transition-colors" />
+                      <h3 className="text-foreground group-hover:text-primary transition-colors">{project.title}</h3>
+                      <div className="p-2 rounded-lg bg-primary/5 hover:bg-primary/20 transition-colors">
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
                       </div>
                     </div>
                     <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.description}</p>
@@ -345,7 +350,7 @@ function SkillsSection() {
     <section id="skills" className="relative z-10 py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <TextScramble text="// TECH STACK" className="text-sm text-purple-400 tracking-widest mb-3 block" />
+          <TextScramble text="// TECH STACK" className="text-sm text-primary tracking-widest mb-3 block" />
           <h2>Skills & <span className="gradient-text-purple">Technologies</span></h2>
         </motion.div>
 
@@ -375,7 +380,7 @@ function ContactSection() {
     <section id="contact" className="relative z-10 py-24 md:py-32">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <TextScramble text="// CONTACT" className="text-sm text-purple-400 tracking-widest mb-3 block" />
+          <TextScramble text="// CONTACT" className="text-sm text-primary tracking-widest mb-3 block" />
           <h2 className="mb-6">Let's Build Something <span className="gradient-text-purple">Amazing</span></h2>
         </motion.div>
         <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-muted-foreground text-lg mb-10 leading-relaxed">
@@ -384,22 +389,13 @@ function ContactSection() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
           <MagneticButton href="mailto:juzulitry@gmail.com">
-            <span className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl font-semibold text-lg shadow-lg shadow-purple-500/20 hover:shadow-xl hover:shadow-purple-500/30 transition-shadow">
-              <Mail className="w-5 h-5" /> Get in Touch
+            <span className="inline-block px-8 py-4 border border-primary rounded-md text-sm font-[family-name:var(--font-mono)] text-primary hover:bg-primary/10 transition-colors">
+              Say Hello
             </span>
           </MagneticButton>
         </motion.div>
 
-        {/* Social links */}
-        <div className="flex justify-center gap-4 mt-10">
-          {socials.map(({ icon: Icon, href, label }) => (
-            <MagneticButton key={label} href={href} strength={0.4}>
-              <span className="flex items-center justify-center w-12 h-12 rounded-xl glass hover:border-purple-500/30 transition-all group">
-                <Icon className="w-5 h-5 text-muted-foreground group-hover:text-purple-400 transition-colors" />
-              </span>
-            </MagneticButton>
-          ))}
-        </div>
+
       </div>
     </section>
   );
@@ -407,24 +403,43 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="relative z-10 py-8 border-t border-purple-500/10">
+    <footer className="relative z-10 py-8">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <p className="text-sm text-muted-foreground">
-          © 2026 Mohammed Juzuli M P. Designed & built with <span className="text-purple-400">♥</span> using React & Tailwind CSS.
+        <p className="text-sm text-muted-foreground font-[family-name:var(--font-mono)]">
+          Designed & Built by <a href="#about" className="hover:text-primary transition-colors">Juzuli</a>
         </p>
       </div>
     </footer>
   );
 }
 
+function Sidebars() {
+  return (
+    <div className="fixed bottom-0 right-8 md:right-12 hidden lg:flex flex-col items-center gap-6 z-50">
+      <div className="flex flex-col gap-5">
+        {socials.map(({ icon: Icon, href, label }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary hover:-translate-y-1 transition-all duration-300" aria-label={label}>
+            <Icon className="w-5 h-5" />
+          </a>
+        ))}
+      </div>
+      <div className="w-[1px] h-24 bg-muted-foreground/50"></div>
+    </div>
+  );
+}
+
 function Portfolio() {
   return (
-    <div className="min-h-screen bg-background relative dark">
+    <div className="min-h-screen bg-background text-foreground relative">
       {/* Background effects */}
-      <GradientMeshBackground />
-      <ParticleNetwork />
+      <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
+        <GradientMeshBackground />
+        <ParticleNetwork />
+        <div className="noise-overlay" />
+      </div>
       <CursorGlow />
-      <div className="noise-overlay" />
+
+      <Sidebars />
 
       {/* Navigation */}
       <Navigation />
@@ -432,8 +447,7 @@ function Portfolio() {
       {/* Main Content */}
       <main>
         <HeroSection />
-        <div className="section-divider" />
-        <StatsSection />
+
         <div className="section-divider" />
         <AboutSection />
         <div className="section-divider" />

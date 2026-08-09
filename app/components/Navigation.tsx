@@ -49,23 +49,22 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm font-[family-name:var(--font-heading)]">
+            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm font-[family-name:var(--font-heading)] shadow-md">
               J
             </div>
-            <span className="font-semibold text-lg font-[family-name:var(--font-heading)] hidden sm:block group-hover:text-purple-400 transition-colors">
-              Juzuli
-            </span>
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Right Side: Nav + CTA */}
+          <div className="flex items-center gap-6">
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:text-purple-400 ${
+                className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:text-primary ${
                   activeSection === link.href.replace('#', '')
-                    ? 'text-purple-400'
+                    ? 'text-primary'
                     : 'text-muted-foreground'
                 }`}
               >
@@ -73,19 +72,19 @@ export function Navigation() {
                 {activeSection === link.href.replace('#', '') && (
                   <motion.div
                     layoutId="navIndicator"
-                    className="absolute inset-0 bg-purple-500/10 rounded-lg"
+                    className="absolute inset-0 bg-primary/10 rounded-lg"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
               </a>
             ))}
-          </div>
+            </div>
 
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
+            {/* CTA & Mobile Toggle */}
+            <div className="flex items-center gap-3">
             <a
               href="mailto:juzulitry@gmail.com"
-              className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 text-sm font-medium hover:bg-purple-500/20 hover:border-purple-500/40 transition-all"
+              className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20 text-sm font-medium hover:bg-primary/20 hover:border-primary/40 transition-all"
             >
               Let's Talk
             </a>
@@ -97,7 +96,8 @@ export function Navigation() {
               aria-label="Toggle menu"
             >
               {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -130,7 +130,7 @@ export function Navigation() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.05 }}
                   onClick={() => setIsMobileOpen(false)}
-                  className="text-2xl font-semibold font-[family-name:var(--font-heading)] text-foreground hover:text-purple-400 transition-colors"
+                  className="text-2xl font-semibold font-[family-name:var(--font-heading)] text-foreground hover:text-primary transition-colors"
                 >
                   {link.label}
                 </motion.a>
@@ -141,7 +141,7 @@ export function Navigation() {
                 transition={{ delay: 0.4 }}
                 href="mailto:juzulitry@gmail.com"
                 onClick={() => setIsMobileOpen(false)}
-                className="mt-4 px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold"
+                className="mt-4 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20"
               >
                 Let's Talk
               </motion.a>
