@@ -1,0 +1,62 @@
+/*
+ * Home page styles: the text reveal (the particle scene, the chapters and the
+ * loader are styled with utilities). Plain CSS on purpose.
+ *
+ * Hidden-before-reveal states are never baked into the page for visitors
+ * without JavaScript: the `scroll` mode only hides things after mount, and the
+ * `hero` mode only hides them under `html.js`.
+ */
+
+.rv-mask {
+  display: block;
+  overflow: hidden;
+  /* Room for ascenders / descenders and negative tracking, cancelled out again by the margin. */
+  padding: 0.14em 0.06em;
+  margin: -0.14em -0.06em;
+}
+
+.rv-line {
+  /* No display here: unlayered CSS would beat Tailwind's layered utilities (e.g. `flex gap-6`) on the same element. */
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--rv-i, 0) * 60ms);
+}
+
+/* Scroll groups: hidden only after mount (the attribute is changed by script). */
+[data-reveal-mode='scroll'][data-reveal-state='pending'] .rv-line {
+  transform: translate3d(0, 110%, 0);
+  transition: none;
+}
+
+[data-reveal-mode='scroll'][data-reveal-state='pending'] .rv-line-fade {
+  transform: translate3d(0, 24px, 0);
+  opacity: 0;
+}
+
+/* Hero: hidden from the first paint, but only when JavaScript is on. The failsafe shows it if the script never runs. */
+html.js [data-reveal-mode='hero'][data-reveal-state='pending'] .rv-line {
+  transform: translate3d(0, 110%, 0);
+  transition: none;
+  animation: rv-failsafe 0.01s linear 6s forwards; /* = LOADER_FAILSAFE_MS */
+}
+
+html.js [data-reveal-mode='hero'][data-reveal-state='pending'] .rv-line-fade {
+  transform: translate3d(0, 24px, 0);
+  opacity: 0;
+}
+
+@keyframes rv-failsafe {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv-line,
+  .rv-line-fade {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

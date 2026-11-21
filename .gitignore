@@ -1,0 +1,17 @@
+# Dependencies (installed by `npm ci`)
+node_modules/
+
+# Build output (CI builds and deploys this on every push to main)
+dist/
+
+# Logs
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Local design/screenshot captures
+capture/

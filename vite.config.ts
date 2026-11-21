@@ -6,21 +6,20 @@ import { vitePrerenderPlugin } from 'vite-prerender-plugin'
 
 export default defineConfig({
   plugins: [
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
     // Pre-render the app to static HTML at build time for SEO
     vitePrerenderPlugin({
       renderTarget: '#root',
       prerenderScript: path.resolve(__dirname, 'src/prerender.tsx'),
+      // The not-found page is not linked from anywhere; scripts/postbuild.mjs turns it into dist/404.html
+      additionalPrerenderRoutes: ['/404'],
     }),
   ],
-  resolve: {
-    alias: {
-      // Alias @ to the src directory
-      '@': path.resolve(__dirname, './src'),
-    },
+
+  build: {
+    // three.js (~690 kB, ~176 kB gzip) is lazy-loaded on Home only, so the default 500 kB warning is expected noise.
+    chunkSizeWarningLimit: 800,
   },
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.

@@ -1,287 +1,111 @@
-/* ========================================
-   FUTURISTIC PORTFOLIO — GLOBAL STYLES
-   ======================================== */
+/* Base styles and a few shared utilities. Tokens live in theme.css. */
 
-/* Noise/Grain Overlay */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+@layer base {
+  /* Tailwind's default border colour is currentColor; use the hairline instead. */
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+
+  html {
+    background-color: var(--color-ink);
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: var(--color-ink);
+  }
+
+  /* Keyboard focus: 2px lime ring, 3px offset. Mouse focus shows no ring. */
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Lenis handles smooth scrolling, so the browser must not also animate it. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  /* Reduced motion: no animation or smooth scrolling, transitions are instant. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Centred page container: 1440px max, 20px side padding, 40px from md (768px) up. */
+@utility page-container {
+  margin-inline: auto;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
+  max-width: var(--container-page);
+  padding-inline: 1.25rem;
 
-/* Glassmorphism utility */
-.glass {
-  background: var(--card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-}
-
-.glass-card {
-  background: var(--card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card:hover {
-  background: var(--card);
-  border-color: var(--primary);
-  box-shadow: 0 0 30px var(--glow-purple);
-}
-
-/* Glow effects */
-.glow-purple {
-  box-shadow: 0 0 20px var(--glow-purple), 0 0 60px var(--glow-purple);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 20px var(--glow-cyan), 0 0 60px var(--glow-cyan);
-}
-
-.text-glow {
-  text-shadow: 0 0 20px var(--glow-purple), 0 0 40px var(--glow-purple);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 20px var(--glow-cyan), 0 0 40px var(--glow-cyan);
-}
-
-/* Dynamic Gradient text utilities */
-.gradient-text-purple {
-  background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-cyan) 50%, var(--neon-pink) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-cyan {
-  background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Neon border on hover */
-.neon-border {
-  position: relative;
-  overflow: hidden;
-}
-
-.neon-border::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan), var(--neon-pink), var(--neon-purple));
-  background-size: 300% 300%;
-  animation: borderGlow 4s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.neon-border:hover::before {
-  opacity: 1;
-}
-
-@keyframes borderGlow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Ripple effect */
-.ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple-wave {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(0);
-  animation: rippleAnim 0.6s ease-out;
-  pointer-events: none;
-}
-
-@keyframes rippleAnim {
-  to {
-    transform: scale(4);
-    opacity: 0;
+  @media (min-width: 48rem) {
+    padding-inline: 2.5rem;
   }
 }
 
-/* Animated gradient background */
-@keyframes meshGradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 100% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  75% {
-    background-position: 0% 100%;
-  }
+/* Mono label: 12px, uppercase, wide tracking, muted. Add text-lime / text-soft / text-paper to recolour. */
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--text-label--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-mute);
 }
 
-.animated-gradient {
-  background: linear-gradient(
-    -45deg,
-    var(--background),
-    var(--card),
-    var(--muted),
-    var(--background)
-  );
-  background-size: 400% 400%;
-  animation: meshGradient 20s ease infinite;
-}
-
-/* Floating animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.float-delay-1 {
-  animation: float 6s ease-in-out 1s infinite;
-}
-
-.float-delay-2 {
-  animation: float 6s ease-in-out 2s infinite;
-}
-
-/* Pulse glow */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px var(--glow-purple);
-  }
-  50% {
-    box-shadow: 0 0 40px var(--glow-purple), 0 0 80px var(--glow-cyan);
-  }
-}
-
-.pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
-
-/* Section divider */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--border) 30%,
-    var(--primary) 50%,
-    var(--border) 70%,
-    transparent 100%
-  );
-}
-
-/* 3D perspective container */
-.perspective-container {
-  perspective: 1000px;
-}
-
-/* Skill tag styles */
-.skill-tag {
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--secondary-foreground);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.skill-tag:hover {
-  background: var(--muted);
-  border-color: var(--primary);
-  color: var(--primary);
-  box-shadow: 0 0 20px var(--glow-purple);
-  transform: translateY(-2px);
-}
-
-/* Mobile hamburger */
-.hamburger-line {
-  width: 24px;
-  height: 2px;
-  background: var(--foreground);
-  transition: all 0.3s ease;
-  border-radius: 2px;
-}
-
-/* Timeline styles */
-.timeline-line {
-  position: absolute;
-  left: 1.25rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--border) 10%,
-    var(--primary) 50%,
-    transparent
-  );
-}
-
-.timeline-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--primary);
-  border: 2px solid var(--background);
-  box-shadow: 0 0 10px var(--glow-purple);
-  z-index: 1;
-}
-
-/* Active nav indicator */
-.nav-indicator {
-  position: absolute;
-  bottom: -1px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
-  border-radius: 1px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Smaller mono label (11px) for nav sub-labels and toggles. */
+@utility mono-label-sm {
+  font-family: var(--font-mono);
+  font-size: var(--text-label-sm);
+  line-height: var(--text-label-sm--line-height);
+  letter-spacing: var(--text-label-sm--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-mute);
 }
