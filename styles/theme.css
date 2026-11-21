@@ -1,148 +1,97 @@
-@custom-variant dark (&:is(.dark *));
+/*
+ * Design tokens. One accent (lime), near-black ink, off-white paper.
+ * Tailwind v4 turns each variable below into utilities:
+ *   --color-lime        -> bg-lime, text-lime, border-lime, ring-lime ...
+ *   --text-hero         -> text-hero (size + line-height + tracking + weight)
+ *   --radius-card       -> rounded-card
+ *   --container-page    -> max-w-page
+ *   --font-mono         -> font-mono
+ */
+@theme {
+  /* Colour */
+  --color-ink: #0b0b0c; /* page background */
+  --color-surface: #141416; /* cards, raised areas */
+  --color-line-faint: rgb(242 240 234 / 0.08); /* section dividers */
+  --color-line: rgb(242 240 234 / 0.12); /* rules, borders (default) */
+  --color-line-medium: rgb(242 240 234 / 0.16); /* tags, idle toggle borders */
+  --color-line-strong: rgb(242 240 234 / 0.2); /* chip pills, swatch borders */
+  --color-mute: #8a8a8a; /* mono labels, 5.7:1 on ink */
+  --color-soft: #b9b7b1; /* body text, 9.8:1 */
+  --color-paper: #f2f0ea; /* headings, primary text, 17.3:1 */
+  --color-lime: #c6ff3d; /* the accent; ink text on lime */
 
-:root {
-  --font-size: 16px;
-  --font-heading: 'JetBrains Mono', monospace;
-  --font-body: 'JetBrains Mono', monospace;
-  --font-mono: 'JetBrains Mono', monospace;
-}
+  /* Fonts (family names as declared by the fontsource CSS) */
+  --font-sans: 'Space Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-/* TRON Legacy Theme */
-:root, .dark {
-  --background: #010409;
-  --foreground: #e0f8ff;
-  --card: #040d1a;
-  --card-foreground: #e0f8ff;
-  --popover: #040d1a;
-  --popover-foreground: #e0f8ff;
-  --primary: #00f0ff;
-  --primary-foreground: #010409;
-  --secondary: #0a192f;
-  --secondary-foreground: #00f0ff;
-  --muted: #081221;
-  --muted-foreground: #6488a0;
-  --accent: #008cff;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 240, 255, 0.25);
-  --input: #0a192f;
-  --ring: #00f0ff;
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --chart-1: #00f0ff;
-  --chart-2: #008cff;
-  --chart-3: #0066cc;
-  --chart-4: #004499;
-  --chart-5: #002266;
-  --radius: 0.75rem;
+  /* Radius: tags 4px, cards and images 16px, pills use rounded-full */
+  --radius-tag: 4px;
+  --radius-card: 16px;
 
-  --neon-purple: #008cff;
-  --neon-cyan: #00f0ff;
-  --neon-pink: #0066cc;
-  --neon-blue: #00f0ff;
-  --glow-purple: rgba(0, 140, 255, 0.4);
-  --glow-cyan: rgba(0, 240, 255, 0.5);
-  --glow-pink: rgba(0, 102, 204, 0.3);
-}
+  /* Layout */
+  --container-page: 1440px;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
+  /*
+   * Type scale. Each size is fluid: clamp() from the mobile (390px) value to
+   * the desktop (1440px) value in the mockups. Line-height, tracking and
+   * weight travel with the size, so `text-hero` alone sets all four.
+   */
+  --text-hero: clamp(3.5rem, 1.2714rem + 9.143vw, 9.5rem); /* 56 -> 152, Home h1 */
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.05em;
+  --text-hero--font-weight: 300;
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+  --text-chapter: clamp(4.5rem, 2.4571rem + 8.381vw, 10rem); /* 72 -> 160, Home chapters */
+  --text-chapter--line-height: 0.9;
+  --text-chapter--letter-spacing: -0.055em;
+  --text-chapter--font-weight: 300;
 
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
-    overflow-x: hidden;
-  }
+  --text-project: clamp(5.5rem, 3.4571rem + 8.381vw, 11rem); /* 88 -> 176, project h1 */
+  --text-project--line-height: 0.88;
+  --text-project--letter-spacing: -0.06em;
+  --text-project--font-weight: 300;
 
-  html {
-    font-size: var(--font-size);
-    scroll-behavior: smooth;
-  }
+  --text-display: clamp(3.25rem, 1.4857rem + 7.238vw, 8rem); /* 52 -> 128, page h1, CTA */
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.05em;
+  --text-display--font-weight: 300;
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-  }
+  --text-row-lg: clamp(2.5rem, 1.2rem + 5.333vw, 6rem); /* 40 -> 96, Work list rows */
+  --text-row-lg--line-height: 1;
+  --text-row-lg--letter-spacing: -0.05em;
+  --text-row-lg--font-weight: 300;
 
-  h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
+  --text-row: clamp(2.75rem, 1.7286rem + 4.19vw, 5.5rem); /* 44 -> 88, Home teaser rows */
+  --text-row--line-height: 1;
+  --text-row--letter-spacing: -0.045em;
+  --text-row--font-weight: 300;
 
-  h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
+  --text-h2: clamp(2.25rem, 1.7857rem + 1.905vw, 3.5rem); /* 36 -> 56, section titles */
+  --text-h2--line-height: 1;
+  --text-h2--letter-spacing: -0.04em;
+  --text-h2--font-weight: 300;
 
-  h3 {
-    font-size: var(--text-xl);
-    font-weight: 600;
-    line-height: 1.4;
-  }
+  --text-h3: 1.75rem; /* 28, small headings */
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 500;
 
-  h4 {
-    font-size: var(--text-lg);
-    font-weight: 500;
-    line-height: 1.5;
-  }
+  --text-lead-lg: clamp(1.625rem, 1.3rem + 1.333vw, 2.5rem); /* 26 -> 40, About intro */
+  --text-lead-lg--line-height: 1.25;
+  --text-lead-lg--letter-spacing: -0.02em;
 
-  label {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-  }
+  --text-lead: clamp(1.375rem, 1.2357rem + 0.571vw, 1.75rem); /* 22 -> 28, chapter lead-ins */
+  --text-lead--line-height: 1.3;
+  --text-lead--letter-spacing: -0.01em;
 
-  button {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-  }
+  --text-body: clamp(1.0625rem, 1.0161rem + 0.19vw, 1.1875rem); /* 17 -> 19 */
+  --text-body--line-height: 1.6;
 
-  input {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-normal);
-    line-height: 1.5;
-  }
+  --text-label: 0.75rem; /* 12, mono labels */
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.14em;
 
-  ::selection {
-    background: rgba(0, 240, 255, 0.3);
-    color: #ffffff;
-  }
+  --text-label-sm: 0.6875rem; /* 11, nav sub-labels, toggles */
+  --text-label-sm--line-height: 1.4;
+  --text-label-sm--letter-spacing: 0.12em;
 }
